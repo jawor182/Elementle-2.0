@@ -15,13 +15,17 @@
 
 # Wymagania funkcjonalne
 
-1.  Przepisanie [wersji 1.0](https://github.com/jawor182/Elementle) na nextjs
-2.  Firestore jako główne miejsce przetrzymywania danych
-3.  Wypolerowanie niedociągnięć interfejsu użytkownika
-4.  Wyzbycie się *bugów* i innych błędów
-5.  Stworzenie systemu rankingów, który bierze pod uwagę:
-    - ilość prób
-    - czas od początku dnia
-    - potencjalnie inne czynniki
-6.  Stworzenie *streaków* i śledzenia progresu
-7.  Stworzenie kont użytkowników i weryfikacja dwuskładnikowa
+-  Przepisanie [wersji 1](https://github.com/jawor182/Elementle) na nextjs
+-  Przechowywanie danych w bazie nosql (Firebase)
+-  Zrobienie minigierek:
+    - Elementle
+    - Uzupelnianie
+    - Znajdowanie
+    - Wlasciwosci
+-   Każda minigeirka śledzi dzienne postępy, ilosc prób, ogólny wynik
+-   Tworzenie kont użytkownika
+-   Wszystko jest przechowywane lokalnie lub w bazie danych, jeśli użytkownik  chce się zalogować
+-   Rankingi są: dzienne, tygodniowe, miesięczne, ogólne (śledzi od momentu wypuszczenia aplikacji)
+-   Możliwość wyboru minigierki
+-   Każda minigierka ma własny ranking
+
