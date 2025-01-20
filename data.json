@@ -1,0 +1,702 @@
+[
+  {
+    "id": 1,
+    "nazwa": "wodór",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 1.0078,
+    "rokOdkrycia": 1766,
+    "okres": 1,
+    "elektroujemnosc": 2.2,
+    "wartosciowosc": 1
+  },
+  {
+    "id": 2,
+    "nazwa": "hel",
+    "rodzaj": "gaz szlachetny",
+    "masaAtomowa": 4.0026,
+    "rokOdkrycia": 1868,
+    "okres": 1,
+    "elektroujemnosc": "brak",
+    "wartosciowosc": 0
+  },
+  {
+    "id": 3,
+    "nazwa": "lit",
+    "rodzaj": "metal",
+    "masaAtomowa": 6.941,
+    "rokOdkrycia": 1817,
+    "okres": 2,
+    "elektroujemnosc": 1,
+    "wartosciowosc": 1
+  },
+  {
+    "id": 4,
+    "nazwa": "beryl",
+    "rodzaj": "metal",
+    "masaAtomowa": 9.0122,
+    "rokOdkrycia": 1797,
+    "okres": 2,
+    "elektroujemnosc": 1.5,
+    "wartosciowosc": 2
+  },
+  {
+    "id": 5,
+    "nazwa": "bor",
+    "rodzaj": "półmetal",
+    "masaAtomowa": 10.811,
+    "rokOdkrycia": 1808,
+    "okres": 2,
+    "elektroujemnosc": 2,
+    "wartosciowosc": 2
+  },
+  {
+    "id": 6,
+    "nazwa": "węgiel",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 12.011,
+    "rokOdkrycia": 1500,
+    "okres": 2,
+    "elektroujemnosc": 2.5,
+    "wartosciowosc": "1, 4"
+  },
+  {
+    "id": 7,
+    "nazwa": "azot",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 14.007,
+    "rokOdkrycia": 1772,
+    "okres": 2,
+    "elektroujemnosc": 3,
+    "wartosciowosc": "1, 2, 3, 4, 5"
+  },
+  {
+    "id": 8,
+    "nazwa": "tlen",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 15.999,
+    "rokOdkrycia": 1774,
+    "okres": 2,
+    "elektroujemnosc": 3.5,
+    "wartosciowosc": 2
+  },
+  {
+    "id": 9,
+    "nazwa": "fluor",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 18.998,
+    "rokOdkrycia": 1886,
+    "okres": 2,
+    "elektroujemnosc": 4,
+    "wartosciowosc": 1
+  },
+  {
+    "id": 10,
+    "nazwa": "neon",
+    "rodzaj": "gaz szlachetny",
+    "masaAtomowa": 20.18,
+    "rokOdkrycia": 1898,
+    "okres": 2,
+    "elektroujemnosc": "brak",
+    "wartosciowosc": 0
+  },
+  {
+    "id": 11,
+    "nazwa": "sód",
+    "rodzaj": "metal",
+    "masaAtomowa": 22.99,
+    "rokOdkrycia": 1807,
+    "okres": 3,
+    "elektroujemnosc": 0.9,
+    "wartosciowosc": 1
+  },
+  {
+    "id": 12,
+    "nazwa": "magnez",
+    "rodzaj": "metal",
+    "masaAtomowa": 24.305,
+    "rokOdkrycia": 1755,
+    "okres": 3,
+    "elektroujemnosc": 1.2,
+    "wartosciowosc": 2
+  },
+  {
+    "id": 13,
+    "nazwa": "glin",
+    "rodzaj": "metal",
+    "masaAtomowa": 26.982,
+    "rokOdkrycia": 1825,
+    "okres": 3,
+    "elektroujemnosc": 1.5,
+    "wartosciowosc": 3
+  },
+  {
+    "id": 14,
+    "nazwa": "krzem",
+    "rodzaj": "półmetal",
+    "masaAtomowa": 28.086,
+    "rokOdkrycia": 1824,
+    "okres": 3,
+    "elektroujemnosc": 1.8,
+    "wartosciowosc": 4
+  },
+  {
+    "id": 15,
+    "nazwa": "fosfor",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 30.974,
+    "rokOdkrycia": 1669,
+    "okres": 3,
+    "elektroujemnosc": 2.1,
+    "wartosciowosc": "1, 3, 4, 5"
+  },
+  {
+    "id": 16,
+    "nazwa": "siarka",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 32.065,
+    "rokOdkrycia": 1400,
+    "okres": 3,
+    "elektroujemnosc": 2.5,
+    "wartosciowosc": "2, 4, 6"
+  },
+  {
+    "id": 17,
+    "nazwa": "chlor",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 35.453,
+    "rokOdkrycia": 1774,
+    "okres": 3,
+    "elektroujemnosc": 3,
+    "wartosciowosc": "1, 3, 4, 5, 7"
+  },
+  {
+    "id": 18,
+    "nazwa": "argon",
+    "rodzaj": "gaz szlachetny",
+    "masaAtomowa": 39.948,
+    "rokOdkrycia": 1894,
+    "okres": 3,
+    "elektroujemnosc": "brak",
+    "wartosciowosc": 0
+  },
+  {
+    "id": 19,
+    "nazwa": "potas",
+    "rodzaj": "metal",
+    "masaAtomowa": 39.098,
+    "rokOdkrycia": 1807,
+    "okres": 4,
+    "elektroujemnosc": 0.8,
+    "wartosciowosc": 1
+  },
+  {
+    "id": 20,
+    "nazwa": "wapń",
+    "rodzaj": "metal",
+    "masaAtomowa": 40.078,
+    "rokOdkrycia": 1808,
+    "okres": 4,
+    "elektroujemnosc": 1,
+    "wartosciowosc": 2
+  },
+  {
+    "id": 21,
+    "nazwa": "skand",
+    "rodzaj": "metal",
+    "masaAtomowa": 44.956,
+    "rokOdkrycia": 1879,
+    "okres": 4,
+    "elektroujemnosc": 1.3,
+    "wartosciowosc": 3
+  },
+  {
+    "id": 22,
+    "nazwa": "tytan",
+    "rodzaj": "metal",
+    "masaAtomowa": 47.867,
+    "rokOdkrycia": 1791,
+    "okres": 4,
+    "elektroujemnosc": 1.5,
+    "wartosciowosc": "2, 3, 4"
+  },
+  {
+    "id": 23,
+    "nazwa": "chrom",
+    "rodzaj": "metal",
+    "masaAtomowa": 51.996,
+    "rokOdkrycia": 1797,
+    "okres": 4,
+    "elektroujemnosc": 1.9,
+    "wartosciowosc": "2, 3, 6"
+  },
+  {
+    "id": 24,
+    "nazwa": "mangan",
+    "rodzaj": "metal",
+    "masaAtomowa": 54.938,
+    "rokOdkrycia": 1774,
+    "okres": 4,
+    "elektroujemnosc": 1.5,
+    "wartosciowosc": "2, 3, 4, 6, 7"
+  },
+  {
+    "id": 25,
+    "nazwa": "żelazo",
+    "rodzaj": "metal",
+    "masaAtomowa": 55.845,
+    "rokOdkrycia": -1800,
+    "okres": 4,
+    "elektroujemnosc": 1.8,
+    "wartosciowosc": "2, 3"
+  },
+  {
+    "id": 26,
+    "nazwa": "kobalt",
+    "rodzaj": "metal",
+    "masaAtomowa": 58.933,
+    "rokOdkrycia": 1735,
+    "okres": 4,
+    "elektroujemnosc": 1.8,
+    "wartosciowosc": "2, 3"
+  },
+  {
+    "id": 27,
+    "nazwa": "nikiel",
+    "rodzaj": "metal",
+    "masaAtomowa": 58.693,
+    "rokOdkrycia": 1751,
+    "okres": 4,
+    "elektroujemnosc": 1.8,
+    "wartosciowosc": "2, 3"
+  },
+  {
+    "id": 28,
+    "nazwa": "miedź",
+    "rodzaj": "metal",
+    "masaAtomowa": 63.546,
+    "rokOdkrycia": -10000,
+    "okres": 4,
+    "elektroujemnosc": 1.9,
+    "wartosciowosc": "1, 2"
+  },
+  {
+    "id": 29,
+    "nazwa": "cynk",
+    "rodzaj": "metal",
+    "masaAtomowa": 65.38,
+    "rokOdkrycia": 1746,
+    "okres": 4,
+    "elektroujemnosc": 1.6,
+    "wartosciowosc": 2
+  },
+  {
+    "id": 30,
+    "nazwa": "gal",
+    "rodzaj": "metal",
+    "masaAtomowa": 69.723,
+    "rokOdkrycia": 1875,
+    "okres": 4,
+    "elektroujemnosc": 1.6,
+    "wartosciowosc": 3
+  },
+  {
+    "id": 31,
+    "nazwa": "german",
+    "rodzaj": "półmetal",
+    "masaAtomowa": 72.64,
+    "rokOdkrycia": 1886,
+    "okres": 4,
+    "elektroujemnosc": 1.8,
+    "wartosciowosc": "2, 4"
+  },
+  {
+    "id": 32,
+    "nazwa": "arsen",
+    "rodzaj": "półmetal",
+    "masaAtomowa": 74.922,
+    "rokOdkrycia": 1250,
+    "okres": 4,
+    "elektroujemnosc": 2,
+    "wartosciowosc": "3, 5"
+  },
+  {
+    "id": 33,
+    "nazwa": "selen",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 78.96,
+    "rokOdkrycia": 1817,
+    "okres": 4,
+    "elektroujemnosc": 2.4,
+    "wartosciowosc": "2, 4, 6"
+  },
+  {
+    "id": 34,
+    "nazwa": "brom",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 79.904,
+    "rokOdkrycia": 1826,
+    "okres": 4,
+    "elektroujemnosc": 2.8,
+    "wartosciowosc": "1, 3, 4, 5, 7"
+  },
+  {
+    "id": 35,
+    "nazwa": "krypton",
+    "rodzaj": "gaz szlachetny",
+    "masaAtomowa": 83.798,
+    "rokOdkrycia": 1898,
+    "okres": 4,
+    "elektroujemnosc": "brak",
+    "wartosciowosc": 0
+  },
+  {
+    "id": 36,
+    "nazwa": "rubid",
+    "rodzaj": "metal",
+    "masaAtomowa": 85.468,
+    "rokOdkrycia": 1861,
+    "okres": 5,
+    "elektroujemnosc": 0.8,
+    "wartosciowosc": 1
+  },
+  {
+    "id": 37,
+    "nazwa": "stront",
+    "rodzaj": "metal",
+    "masaAtomowa": 87.62,
+    "rokOdkrycia": 1790,
+    "okres": 5,
+    "elektroujemnosc": 1,
+    "wartosciowosc": 2
+  },
+  {
+    "id": 38,
+    "nazwa": "itr",
+    "rodzaj": "metal",
+    "masaAtomowa": 88.906,
+    "rokOdkrycia": 1794,
+    "okres": 5,
+    "elektroujemnosc": 1.3,
+    "wartosciowosc": 3
+  },
+  {
+    "id": 39,
+    "nazwa": "wanad",
+    "rodzaj": "metal",
+    "masaAtomowa": 50.942,
+    "rokOdkrycia": 1801,
+    "okres": 4,
+    "elektroujemnosc": 1.6,
+    "wartosciowosc": "2, 3, 4, 5"
+  },
+  {
+    "id": 40,
+    "nazwa": "cyrkon",
+    "rodzaj": "metal",
+    "masaAtomowa": 91.224,
+    "rokOdkrycia": 1789,
+    "okres": 5,
+    "elektroujemnosc": 1.4,
+    "wartosciowosc": 4
+  },
+  {
+    "id": 41,
+    "nazwa": "ksenon",
+    "rodzaj": "gaz szlachetny",
+    "masaAtomowa": 131.29,
+    "rokOdkrycia": 1898,
+    "okres": 5,
+    "elektroujemnosc": "brak",
+    "wartosciowosc": 0
+  },
+  {
+    "id": 42,
+    "nazwa": "radon",
+    "rodzaj": "gaz szlachetny",
+    "masaAtomowa": 222,
+    "rokOdkrycia": 1900,
+    "okres": 6,
+    "elektroujemnosc": "brak",
+    "wartosciowosc": 0
+  },
+  {
+    "id": 43,
+    "nazwa": "srebro",
+    "rodzaj": "metal",
+    "masaAtomowa": 107.87,
+    "rokOdkrycia": -500,
+    "okres": 5,
+    "elektroujemnosc": 1.9,
+    "wartosciowosc": "1, 2"
+  },
+  {
+    "id": 44,
+    "nazwa": "cyna",
+    "rodzaj": "metal",
+    "masaAtomowa": 118.71,
+    "rokOdkrycia": -500,
+    "okres": 5,
+    "elektroujemnosc": 1.9,
+    "wartosciowosc": "2, 4"
+  },
+  {
+    "id": 45,
+    "nazwa": "jod",
+    "rodzaj": "niemetal",
+    "masaAtomowa": 126.904,
+    "rokOdkrycia": 1811,
+    "okres": 5,
+    "elektroujemnosc": 2.7,
+    "wartosciowosc": "1, 3, 5, 7"
+  },
+  {
+    "id": 46,
+    "nazwa": "wolfram",
+    "rodzaj": "metal",
+    "masaAtomowa": 183.84,
+    "rokOdkrycia": 1783,
+    "okres": 6,
+    "elektroujemnosc": 2.4,
+    "wartosciowosc": "2, 3, 4, 5, 6"
+  },
+  {
+    "id": 47,
+    "nazwa": "platyna",
+    "rodzaj": "metal",
+    "masaAtomowa": 195.084,
+    "rokOdkrycia": 1735,
+    "okres": 6,
+    "elektroujemnosc": 2.3,
+    "wartosciowosc": "2, 4"
+  },
+  {
+    "id": 48,
+    "nazwa": "złoto",
+    "rodzaj": "metal",
+    "masaAtomowa": 196.966,
+    "rokOdkrycia": -1000,
+    "okres": 6,
+    "elektroujemnosc": 2.5,
+    "wartosciowosc": "1, 3"
+  },
+  {
+    "id": 49,
+    "nazwa": "rtęć",
+    "rodzaj": "metal",
+    "masaAtomowa": "200. 592",
+    "rokOdkrycia": 1000,
+    "okres": 6,
+    "elektroujemnosc": 2,
+    "wartosciowosc": "1, 2"
+  },
+  {
+    "id": 50,
+    "nazwa": "ołów",
+    "rodzaj": "metal",
+    "masaAtomowa": 207.2,
+    "rokOdkrycia": -1000,
+    "okres": 6,
+    "elektroujemnosc": 2.3,
+    "wartosciowosc": "2, 4"
+  },
+  {
+    "id": 51,
+    "nazwa": "rad",
+    "rodzaj": "metal",
+    "masaAtomowa": 226,
+    "rokOdkrycia": 1898,
+    "okres": 7,
+    "elektroujemnosc": 0.9,
+    "wartosciowosc": 2
+  },
+  {
+    "id": 52,
+    "nazwa": "uran",
+    "rodzaj": "metal",
+    "masaAtomowa": 238.03,
+    "rokOdkrycia": 1789,
+    "okres": 7,
+    "elektroujemnosc": 1.4,
+    "wartosciowosc": "3, 4, 5, 6"
+  },
+  {
+    "id": 53,
+    "nazwa": "neptun",
+    "rodzaj": "metal",
+    "masaAtomowa": 237,
+    "rokOdkrycia": 1940,
+    "okres": 7,
+    "elektroujemnosc": 1.4,
+    "wartosciowosc": "3, 4, 5, 6, 7"
+  },
+  {
+    "id": 54,
+    "nazwa": "pluton",
+    "rodzaj": "metal",
+    "masaAtomowa": 244,
+    "rokOdkrycia": 1940,
+    "okres": 7,
+    "elektroujemnosc": 1.3,
+    "wartosciowosc": "3, 4, 5, 6, 7"
+  },
+  {
+    "id": 55,
+    "nazwa": "berkel",
+    "rodzaj": "metal",
+    "masaAtomowa": 247,
+    "rokOdkrycia": 1949,
+    "okres": 7,
+    "elektroujemnosc": 1.3,
+    "wartosciowosc": "3, 4"
+  },
+  {
+    "id": 56,
+    "nazwa": "ameryk",
+    "rodzaj": "metal",
+    "masaAtomowa": 243,
+    "rokOdkrycia": 1944,
+    "okres": 7,
+    "elektroujemnosc": 1.3,
+    "wartosciowosc": "3, 4"
+  },
+  {
+    "id": 57,
+    "nazwa": "tor",
+    "rodzaj": "metal",
+    "masaAtomowa": 232.037,
+    "rokOdkrycia": 1828,
+    "okres": 7,
+    "elektroujemnosc": 1.3,
+    "wartosciowosc": 4
+  },
+  {
+    "id": 58,
+    "nazwa": "aktyn",
+    "rodzaj": "metal",
+    "masaAtomowa": 227,
+    "rokOdkrycia": 1899,
+    "okres": 7,
+    "elektroujemnosc": 1.1,
+    "wartosciowosc": 3
+  },
+  {
+    "id": 59,
+    "nazwa": "iryd",
+    "rodzaj": "metal",
+    "masaAtomowa": 192.217,
+    "rokOdkrycia": 1803,
+    "okres": 6,
+    "elektroujemnosc": 2.2,
+    "wartosciowosc": "3, 4"
+  },
+  {
+    "id": 60,
+    "nazwa": "neodym",
+    "rodzaj": "metal",
+    "masaAtomowa": 144.242,
+    "rokOdkrycia": 1885,
+    "okres": 6,
+    "elektroujemnosc": 1.1,
+    "wartosciowosc": 3
+  },
+  {
+    "id": 61,
+    "nazwa": "prazeodym",
+    "rodzaj": "metal",
+    "masaAtomowa": 140.907,
+    "rokOdkrycia": 1885,
+    "okres": 6,
+    "elektroujemnosc": 1.1,
+    "wartosciowosc": 3
+  },
+  {
+    "id": 62,
+    "nazwa": "cer",
+    "rodzaj": "metal",
+    "masaAtomowa": 140.116,
+    "rokOdkrycia": 1803,
+    "okres": 6,
+    "elektroujemnosc": 1.1,
+    "wartosciowosc": "3, 4"
+  },
+  {
+    "id": 63,
+    "nazwa": "bar",
+    "rodzaj": "metal",
+    "masaAtomowa": 137.327,
+    "rokOdkrycia": 1808,
+    "okres": 6,
+    "elektroujemnosc": 0.9,
+    "wartosciowosc": 2
+  },
+  {
+    "id": 64,
+    "nazwa": "antymon",
+    "rodzaj": "metal",
+    "masaAtomowa": 121.76,
+    "rokOdkrycia": -1000,
+    "okres": 5,
+    "elektroujemnosc": 2,
+    "wartosciowosc": "3, 5"
+  },
+  {
+    "id": 65,
+    "nazwa": "pallad",
+    "rodzaj": "metal",
+    "masaAtomowa": 106.42,
+    "rokOdkrycia": 1803,
+    "okres": 5,
+    "elektroujemnosc": 2.2,
+    "wartosciowosc": "2, 4"
+  },
+  {
+    "id": 66,
+    "nazwa": "cez",
+    "rodzaj": "metal",
+    "masaAtomowa": 132.905,
+    "rokOdkrycia": 1860,
+    "okres": 6,
+    "elektroujemnosc": 0.8,
+    "wartosciowosc": 1
+  },
+  {
+    "id": 67,
+    "nazwa": "promet",
+    "rodzaj": "metal",
+    "masaAtomowa": 145,
+    "rokOdkrycia": 1945,
+    "okres": 6,
+    "elektroujemnosc": 1.1,
+    "wartosciowosc": 3
+  },
+  {
+    "id": 68,
+    "nazwa": "terb",
+    "rodzaj": "metal",
+    "masaAtomowa": 158.925,
+    "rokOdkrycia": 1843,
+    "okres": 6,
+    "elektroujemnosc": 1.2,
+    "wartosciowosc": 3
+  },
+  {
+    "id": 69,
+    "nazwa": "europ",
+    "rodzaj": "metal",
+    "masaAtomowa": 151.965,
+    "rokOdkrycia": 1901,
+    "okres": 6,
+    "elektroujemnosc": "brak",
+    "wartosciowosc": "2, 3"
+  },
+  {
+    "id": 70,
+    "nazwa": "dysproz",
+    "rodzaj": "metal",
+    "masaAtomowa": 162.5,
+    "rokOdkrycia": 1886,
+    "okres": 6,
+    "elektroujemnosc": 1.2,
+    "wartosciowosc": 3
+  }
+]
