@@ -4,7 +4,7 @@ import bg from "../../public/bg.png";
 
 const Background = () => {
   return (
-    <div className="relative w-full flex-1 bg-zinc-500 -z-10">
+      <div className="relative w-full min-h-screen flex-1 bg-zinc-500 -z-10">
       <Image
         alt="Tło"
         src={bg}
