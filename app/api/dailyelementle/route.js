@@ -1,6 +1,6 @@
 import { getDailyAnswers } from "@/lib/firebase.js";
 
-export async function POST() {
+export async function GET() {
     try {
         await getDailyAnswers();
         return Response.json({ message: "Dane przeslane pomyslnie" }, { status: 200 });
