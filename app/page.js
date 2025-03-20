@@ -1,12 +1,9 @@
-import fetchData from "@/lib/firebase.js";
-import Background from "./_components/Background.jsx";
 import Footer from "./_components/Footer.jsx";
 import Header from "./_components/Header.jsx";
 import Image from "next/image.js";
 import Link from "next/link.js";
 
-export default function Home() {
-  //fetchData();
+export default async function Home() {
   return (
     <div className="relative flex flex-col min-h-screen">
       <Header />
