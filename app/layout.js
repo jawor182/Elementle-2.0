@@ -1,20 +1,20 @@
-import "./globals.css"
-import { Roboto } from "next/font/google"
+import "./globals.css";
+import { Roboto } from "next/font/google";
 
 export const metadata = {
-  title: "Elementle",
-  description: "Elementle",
+    title: "Elementle",
+    description: "Elementle",
+    icons: {
+        icon: "/logo.png", 
+    },
 };
 
-const roboto = Roboto({subsets:['latin'], weight:"400"});
+const roboto = Roboto({ subsets: ["latin"], weight: "400" });
 
 export default function RootLayout({ children }) {
-  return (
-    <html lang="en">
-      <link rel="icon" href="logo.png"/>
-      <body className={roboto.className}>
-        {children}
-        </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body className={roboto.className}>{children}</body>
+        </html>
+    );
 }
