@@ -15,7 +15,7 @@ function page() {
       }
       fetchData();
     }
-  }, [hasFetched, setElementle, fetchElementle]);
+  }, [hasFetched, setElementle]);
   console.log("Elementle:", elementle || "Loading...");
   // TODO: karta - buttony do porownanie pierwiastkow i stan jej
   return <div>Test</div>;
