@@ -15,7 +15,7 @@ function ElementCard({
     return (
         <>
             {isVisible ? (
-                <div className="flex flex-col bg-green-500 h-1/2 w-1/6 min-w-80 rounded-md border-4 border-black">
+                <div className="flex flex-col bg-green-500 h-1/2 w-1/6 min-w-80 min-h-[26rem] rounded-md border-4 border-black">
                     <h2 className="text-4xl text-center m-6">{nazwa}</h2>
                     <div className="my-2">
                         <div className="grid grid-cols-[5fr_1fr] m-8">
@@ -41,7 +41,7 @@ function ElementCard({
                     </div>
                 </div>
             ) : (
-                <div className="flex flex-col bg-green-500 h-1/2 w-1/6 min-w-80 rounded-md border-4 border-black">
+                <div className="flex flex-col bg-green-500 h-1/2 w-1/6 min-w-80 min-h-[26rem] rounded-md border-4 border-black">
                     <h2 className="text-4xl text-center m-6">{nazwa}</h2>
                     <div className="my-2">
                         <div className="grid grid-cols-[5fr_1fr] m-8">
@@ -71,9 +71,9 @@ function ElementCard({
     );
 }
 
-function page() {
+function Page() {
     const [elementle, setElementle] = useState(null);
-    const hasFetched = useRef(false);
+    const hasFetched = useRef(true);
 
     useEffect(() => {
         if (!hasFetched.current) {
@@ -102,4 +102,4 @@ function page() {
     );
 }
 
-export default page;
+export default Page;
