@@ -138,7 +138,7 @@ const Elementle = () => {
     }
 
     return (
-        <div className="relative h-screen overflow-hidden bg-gray-900/50">
+        <div className="relative h-screen overflow-hidden bg-gray-500/20">
             <Background className="absolute inset-0 z-0 object-cover w-full h-full" />
             
             <div className="relative z-10 h-full flex flex-col items-center justify-center p-4">
