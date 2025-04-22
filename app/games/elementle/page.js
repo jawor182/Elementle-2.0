@@ -238,6 +238,7 @@ const Elementle = () => {
                 <form onSubmit={handleSubmit} className="p-4 flex items-center border-b border-white/20 w-full">
                     <div className="bg-white/20 rounded-full p-2 mr-3 backdrop-blur-sm">
                         <img src="/question.svg" alt="?" className="w-6 h-6 filter brightness-0 invert" />
+                    </div>
                     <div className="flex-1">
                         <input
                             type="text"
