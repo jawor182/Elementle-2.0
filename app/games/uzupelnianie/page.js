@@ -1,10 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import dynamic from "next/dynamic"; // Dynamiczne ładowanie
 import { fetchUzupelnianie } from "@/lib/firebase";
-
-// Dynamicznie ładujemy useRouter, żeby działało tylko po stronie klienta
-const DynamicRouter = dynamic(() => import("next/router"), { ssr: false });
+import WinScreen from "@/app/_components/WinScreen";
 
 const Uzupelnianie = () => {
     const [reaction, setReaction] = useState(null);
@@ -14,17 +11,10 @@ const Uzupelnianie = () => {
     const [error, setError] = useState(null);
     const [submitted, setSubmitted] = useState(false);
 
-    const [router, setRouter] = useState(null); // Przechowujemy instancję routera
-
-    useEffect(() => {
-        const routerInstance = DynamicRouter();
-        setRouter(routerInstance); // Inicjalizujemy router po stronie klienta
-    }, []);
-
     const loadDailyReaction = async () => {
         try {
             setLoading(true);
-            const data = await fetchUzupelnianie(); // Pobieramy reakcję z Firebase (elementle)
+            const data = await fetchUzupelnianie();
             setReaction(data);
             setUserInput("");
             setIsCorrect(null);
@@ -37,7 +27,7 @@ const Uzupelnianie = () => {
     };
 
     useEffect(() => {
-        loadDailyReaction(); // Wywołaj funkcję po załadowaniu komponentu
+        loadDailyReaction();
     }, []);
 
     const handleChange = (event) => {
@@ -51,12 +41,6 @@ const Uzupelnianie = () => {
             setIsCorrect(true);
         } else {
             setIsCorrect(false);
-        }
-    };
-
-    const handleGoHome = () => {
-        if (router) {
-            router.push("/"); // Przekierowanie na stronę główną (lub inną)
         }
     };
 
@@ -76,19 +60,12 @@ const Uzupelnianie = () => {
         );
     }
 
+    if (isCorrect) {
+        return <WinScreen />;
+    }
+
     return (
         <div className="text-center font-roboto bg-[url('/images/bg.png')] bg-cover bg-no-repeat min-h-[91vh] flex justify-center items-center flex-col">
-            {isCorrect && (
-                <div className="mb-4 p-4 bg-green-500 text-white rounded-lg">
-                    Gratulacje! Poprawna odpowiedź!
-                    <button
-                        onClick={handleGoHome} // Zamiast "Następna reakcja", używamy "Powrót do strony głównej"
-                        className="ml-4 px-4 py-2 bg-white text-green-500 rounded hover:bg-gray-100"
-                    >
-                        Powrót do strony głównej
-                    </button>
-                </div>
-            )}
             <div className="text-[calc(100%+40px)] bg-gradient-to-r from-yellow-500 to-green-600 bg-clip-text text-transparent">
                 Uzupełnianie Reakcji Chemicznej
             </div>

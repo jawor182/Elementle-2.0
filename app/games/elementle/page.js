@@ -3,6 +3,7 @@ import { fetchElementle } from "@/lib/firebase";
 import Background from "@/app/_components/Background";
 import React, { useEffect, useState } from "react";
 import pierwiastkiData from "@/data/pierwiastki";
+import WinScreen from "@/app/_components/WinScreen";
 
 const Elementle = () => {
     const [inputValue, setInputValue] = useState('');
@@ -137,95 +138,25 @@ const Elementle = () => {
         );
     }
 
+    if (win) {
+        return <WinScreen 
+            attempts={guesses.length} 
+            gameType="Elementle" 
+            correctAnswer={correctElement.nazwa.charAt(0).toUpperCase() + correctElement.nazwa.slice(1)}
+            additionalInfo={{
+                "Masa atomowa": Math.round(correctElement.masaAtomowa),
+                "Rok odkrycia": correctElement.rokOdkrycia,
+                "Rodzaj": correctElement.rodzaj,
+                "Okres": correctElement.okres
+            }}
+        />;
+    }
+
     return (
         <div className="relative h-screen overflow-hidden bg-gray-500/20">
             <Background className="absolute inset-0 z-0 object-cover w-full h-full" />
             
             <div className="relative z-10 h-full flex flex-col items-center justify-center p-4">
-                {/* Ekran wygranej */}
-                {win && (
-                    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center">
-                        <div className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 text-white p-8 rounded-2xl shadow-2xl max-w-md w-full text-center overflow-hidden animate-zoomIn">
-                            {/* Confetti effect */}
-                            <div className="absolute inset-0 overflow-hidden">
-                                {[...Array(30)].map((_, i) => (
-                                    <div 
-                                        key={i}
-                                        className="absolute w-2 h-2 bg-yellow-400 rounded-full animate-confetti"
-                                        style={{
-                                            left: `${Math.random() * 100}%`,
-                                            top: `${Math.random() * 100}%`,
-                                            animationDelay: `${Math.random() * 0.5}s`,
-                                            transform: `rotate(${Math.random() * 360}deg)`,
-                                            opacity: 0.7
-                                        }}
-                                    />
-                                ))}
-                            </div>
-                            
-                            {/* Trophy icon */}
-                            <div className="relative z-10 mb-6 flex justify-center">
-                                <div className="bg-gradient-to-br from-yellow-300 to-yellow-500 p-5 rounded-full shadow-lg animate-bounce">
-                                    <svg 
-                                        xmlns="http://www.w3.org/2000/svg" 
-                                        className="h-16 w-16" 
-                                        fill="none" 
-                                        viewBox="0 0 24 24" 
-                                        stroke="currentColor"
-                                    >
-                                        <path 
-                                            strokeLinecap="round" 
-                                            strokeLinejoin="round" 
-                                            strokeWidth={2} 
-                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" 
-                                        />
-                                        <path 
-                                            strokeLinecap="round" 
-                                            strokeLinejoin="round" 
-                                            strokeWidth={2} 
-                                            d="M19 7h1m-1 5h1m-9 5h1m4 0h1m-7 0h1m-3 0h1" 
-                                        />
-                                    </svg>
-                                </div>
-                            </div>
-                            
-                            {/* Title */}
-                            <h2 className="relative z-10 text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-100">
-                                Gratulacje!
-                            </h2>
-                            
-                            {/* Subtitle */}
-                            <p className="relative z-10 text-lg mb-6 text-white/90">
-                                Odgadłeś dzisiejszy pierwiastek w {guesses.length} próbach!
-                            </p>
-                            
-                            {/* Correct element */}
-                            <div className="relative z-10 bg-white/10 p-4 rounded-lg backdrop-blur-sm mb-6">
-                                <h3 className="text-xl font-semibold text-yellow-300 mb-2">
-                                    {correctElement.nazwa.charAt(0).toUpperCase() + correctElement.nazwa.slice(1)}
-                                </h3>
-                                <div className="grid grid-cols-2 gap-2 text-sm">
-                                    <div>Masa atomowa: <span className="font-bold">{Math.round(correctElement.masaAtomowa)}</span></div>
-                                    <div>Rok odkrycia: <span className="font-bold">{correctElement.rokOdkrycia}</span></div>
-                                    <div>Rodzaj: <span className="font-bold">{correctElement.rodzaj}</span></div>
-                                    <div>Okres: <span className="font-bold">{correctElement.okres}</span></div>
-                                </div>
-                            </div>
-                            
-                            {/* Share button */}
-                            <button 
-                                className="relative z-10 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-400 hover:to-indigo-500 text-white font-semibold py-3 px-6 rounded-full shadow-lg transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-300"
-                                onClick={() => {
-                                    navigator.clipboard.writeText(`Odgadłem dzisiejszy pierwiastek w Elementle w ${guesses.length} próbach! 🎉`);
-                                    alert('Skopiowano do schowka!');
-                                }}
-                            >
-                                Udostępnij wynik
-                            </button>
-                        </div>
-                    </div>
-                )}
-                
                 {/* Nagłówek gry */}
                 <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-4 text-white border-b border-white/20 w-full">
                     <div className="flex items-center justify-center space-x-3">
