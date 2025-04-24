@@ -19,13 +19,13 @@ function ElementCard({
   ];
 
   return (
-    <div className="flex flex-col bg-green-500 w-1/6 min-w-80 rounded-md border-4 border-black">
-      <h2 className="text-4xl text-center m-4">{nazwa}</h2>
+    <div className="flex flex-col bg-green-500 w-full sm:w-80 md:w-72 lg:w-60 rounded-md border-4 border-black">
+      <h2 className="text-2xl sm:text-3xl text-center m-4">{nazwa}</h2>
       <div className="my-2">
         {dane.map(([key, label, value]) => (
           <div
             key={key}
-            className={`grid grid-cols-[5fr_1fr] m-8 hover:bg-green-900 ${
+            className={`grid grid-cols-[5fr_1fr] m-4 hover:bg-green-900 ${
               isVisible ? "cursor-pointer" : "cursor-default"
             }`}
             onClick={() => isVisible && onChooseValue?.(key, value)}
@@ -66,7 +66,6 @@ function page() {
     const nextElement = elementle[currentIndex + 1];
     const nextValue = nextElement[property];
 
-    // Debugowanie
     console.log("--- PORÓWNANIE ---");
     console.log("Właściwość:", property);
     console.log("Aktualna wartość:", value);
@@ -91,10 +90,12 @@ function page() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center p-4 space-y-4">
-      <h1 className="text-3xl font-bold text-center text-white">Porównaj właściwości pierwiastków</h1>
+    <div className="w-full min-h-screen flex flex-col items-center justify-center p-4 space-y-4 bg-bgImg bg-cover">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center text-white">
+        Porównaj właściwości pierwiastków
+      </h1>
       
-      <div className="flex flex-wrap justify-center items-center gap-4 flex-grow-0">
+      <div className="flex flex-wrap justify-center items-center gap-4 w-full px-2 overflow-x-auto">
         {elementle.map((elem, index) => (
           <ElementCard
             key={elem.id}
@@ -105,7 +106,7 @@ function page() {
         ))}
       </div>
 
-      <div className="text-xl text-center space-y-2">
+      <div className="text-lg sm:text-xl text-center space-y-2 text-white">
         {gameOver ? (
           won ? (
             <WinScreen />
@@ -113,7 +114,7 @@ function page() {
             <p className="text-red-700 font-bold">❌ Przegrałeś! Spróbuj ponownie.</p>
           )
         ) : (
-          <p className="text-white">Wynik: {score}</p>
+          <p>Wynik: {score}</p>
         )}
       </div>
     </div>
@@ -121,3 +122,4 @@ function page() {
 }
 
 export default page;
+
