@@ -5,6 +5,26 @@ import React, { useEffect, useState } from "react";
 import pierwiastkiData from "@/data/pierwiastki";
 import WinScreen from "@/app/_components/WinScreen";
 
+const LOCAL_STORAGE_KEY = "elementle-state";
+
+const saveToLocalStorage = (state) => {
+    try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {
+        console.warn("Nie udało się zapisać do localStorage:", e);
+    }
+};
+
+const loadFromLocalStorage = () => {
+    try {
+        const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+        return data ? JSON.parse(data) : null;
+    } catch (e) {
+        console.warn("Nie udało się wczytać z localStorage:", e);
+        return null;
+    }
+};
+
 const Elementle = () => {
     const [inputValue, setInputValue] = useState('');
     const [guesses, setGuesses] = useState([]);
@@ -21,7 +41,7 @@ const Elementle = () => {
             try {
                 setLoading(true);
                 const dailyAnswer = await fetchElementle();
-                
+
                 if (!dailyAnswer?.pierwiastek) {
                     throw new Error('Brak danych elementu.');
                 }
@@ -36,11 +56,21 @@ const Elementle = () => {
                     nazwa: el.nazwa.trim().toLowerCase()
                 }));
 
-                setElements(normalizedElements);
-                setCorrectElement({
+                const normalizedAnswer = {
                     ...dailyAnswer.pierwiastek,
                     nazwa: dailyAnswer.pierwiastek.nazwa.trim().toLowerCase()
-                });
+                };
+
+                setElements(normalizedElements);
+                setCorrectElement(normalizedAnswer);
+
+                const saved = loadFromLocalStorage();
+                if (saved && saved.correctName === normalizedAnswer.nazwa) {
+                    setGuesses(saved.guesses || []);
+                    setWin(saved.win || false);
+                    setDisableInput(saved.win || false);
+                }
+
             } catch (error) {
                 console.error("Błąd ładowania danych:", error);
                 setError("Błąd ładowania gry. Spróbuj odświeżyć stronę.");
@@ -50,6 +80,16 @@ const Elementle = () => {
         }
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if (correctElement) {
+            saveToLocalStorage({
+                guesses,
+                win,
+                correctName: correctElement.nazwa,
+            });
+        }
+    }, [guesses, win, correctElement]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -65,7 +105,7 @@ const Elementle = () => {
 
         if (userGuessElement) {
             const isCorrect = userGuessElement.nazwa === correctElement.nazwa;
-            
+
             if (isCorrect) {
                 setWin(true);
                 setDisableInput(true);
@@ -90,7 +130,7 @@ const Elementle = () => {
 
         const numGuess = Number(displayGuessValue);
         const numCorrect = Number(displayCorrectValue);
-        
+
         if (isNaN(numGuess) || isNaN(numCorrect)) {
             return <span className="text-red-400">{displayGuessValue || '-'}</span>;
         }
@@ -156,49 +196,47 @@ const Elementle = () => {
         <div className="relative h-screen overflow-hidden bg-gray-500/20">
             <Background className="absolute inset-0 z-0 object-cover w-full h-full" />
             
-            <div className="relative z-10 h-full flex flex-col items-center justify-center p-4">
-                {/* Nagłówek gry */}
-                <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-4 text-white border-b border-white/20 w-full">
+            <div className="relative z-10 h-full flex flex-col items-center p-4">
+                <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-4 text-white border-b border-white/20 w-full max-w-4xl">
                     <div className="flex items-center justify-center space-x-3">
                         <img src="/logo.png" alt="Logo" className="h-10 drop-shadow-lg" />
                         <h1 className="text-2xl font-bold drop-shadow-md text-lime-400">Elementle</h1>
                     </div>
                 </div>
 
-                {/* Formularz zgadywania */}
-                <form onSubmit={handleSubmit} className="p-4 flex items-center border-b border-white/20 w-full">
-                    <div className="bg-white/20 rounded-full p-2 mr-3 backdrop-blur-sm">
-                        <img src="/question.svg" alt="?" className="w-6 h-6 filter brightness-0 invert" />
-                    </div>
-                    <div className="flex-1">
-                        <input
-                            type="text"
-                            value={inputValue}
-                            onChange={(e) => {
-                                setInputValue(e.target.value);
-                                setInputError(null);
-                            }}
-                            placeholder="Wpisz nazwę pierwiastka"
-                            className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 text-white bg-white/20 backdrop-blur-sm placeholder-white/70 ${
-                                inputError 
-                                    ? 'border-red-400 focus:ring-red-400' 
-                                    : 'border-white/30 focus:ring-blue-400'
-                            }`}
-                            disabled={disableInput}
-                            autoFocus
-                        />
-                        {inputError && (
-                            <div className="mt-2 text-sm text-red-300 bg-red-900/50 px-3 py-1.5 rounded-md">
-                                {inputError}
-                            </div>
-                        )}
+                <form onSubmit={handleSubmit} className="p-4 flex items-center justify-center w-full">
+                    <div className="w-full max-w-4xl flex items-center">
+                        <div className="bg-white/20 rounded-full p-2 mr-3 backdrop-blur-sm">
+                            <img src="/question.svg" alt="?" className="w-6 h-6 filter brightness-0 invert" />
+                        </div>
+                        <div className="flex-1 w-2/3">
+                            <input
+                                type="text"
+                                value={inputValue}
+                                onChange={(e) => {
+                                    setInputValue(e.target.value);
+                                    setInputError(null);
+                                }}
+                                placeholder="Wpisz nazwę pierwiastka"
+                                className={`w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 text-white bg-white/20 backdrop-blur-sm placeholder-white/70 ${
+                                    inputError 
+                                        ? 'border-red-400 focus:ring-red-400' 
+                                        : 'border-white/30 focus:ring-blue-400'
+                                }`}
+                                disabled={disableInput}
+                                autoFocus
+                            />
+                            {inputError && (
+                                <div className="mt-2 text-sm text-red-300 bg-red-900/50 px-3 py-1.5 rounded-md">
+                                    {inputError}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 </form>
 
-                {/* Wyniki */}
-                <div className="overflow-auto flex-1 w-full">
+                <div className="overflow-auto flex-1 w-full max-w-4xl">
                     <div className="min-w-full">
-                        {/* Nagłówki kolumn */}
                         <div className="grid grid-cols-6 gap-2 p-3 bg-white/10 text-xs font-semibold text-white/80 sticky top-0 backdrop-blur-sm">
                             <div>Nazwa</div>
                             <div>Rodzaj</div>
@@ -208,7 +246,6 @@ const Elementle = () => {
                             <div>Okres</div>
                         </div>
 
-                        {/* Lista prób */}
                         <div className="divide-y divide-white/10">
                             {guesses.map((guess, index) => (
                                 <div key={index} className="grid grid-cols-6 gap-2 p-3 text-sm text-white">
