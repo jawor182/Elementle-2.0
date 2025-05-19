@@ -9,7 +9,11 @@ const LOCAL_STORAGE_KEY = "elementle-state";
 
 const saveToLocalStorage = (state) => {
     try {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+        const stateWithDate = {
+            ...state,
+            date: new Date().toISOString().split('T')[0] // YYYY-MM-DD format
+        };
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(stateWithDate));
     } catch (e) {
         console.warn("Nie udało się zapisać do localStorage:", e);
     }
@@ -18,7 +22,17 @@ const saveToLocalStorage = (state) => {
 const loadFromLocalStorage = () => {
     try {
         const data = localStorage.getItem(LOCAL_STORAGE_KEY);
-        return data ? JSON.parse(data) : null;
+        if (!data) return null;
+        
+        const parsed = JSON.parse(data);
+        const today = new Date().toISOString().split('T')[0];
+        
+        if (parsed.date !== today) {
+            localStorage.removeItem(LOCAL_STORAGE_KEY);
+            return null;
+        }
+        
+        return parsed;
     } catch (e) {
         console.warn("Nie udało się wczytać z localStorage:", e);
         return null;
