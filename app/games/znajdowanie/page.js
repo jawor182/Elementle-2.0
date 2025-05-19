@@ -3,6 +3,34 @@ import { useEffect, useState } from "react";
 import { fetchElementle } from "@/lib/firebase";
 import WinScreen from "@/app/_components/WinScreen";
 
+const LOCAL_STORAGE_KEY = "znajdowanie-state";
+const getTodayDate = () => new Date().toISOString().split('T')[0];
+
+const saveToLocalStorage = (state) => {
+  try {
+    const stateWithDate = { ...state, date: getTodayDate() };
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(stateWithDate));
+  } catch (e) {
+    console.warn("Nie udało się zapisać stan gry:", e);
+  }
+};
+
+const loadFromLocalStorage = () => {
+  try {
+    const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (!data) return null;
+    const parsed = JSON.parse(data);
+    if (parsed.date !== getTodayDate()) {
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
+      return null;
+    }
+    return parsed;
+  } catch (e) {
+    console.warn("Nie udało się wczytać stan gry:", e);
+    return null;
+  }
+};
+
 const Znajdowanie = () => {
   const [inputValue, setInputValue] = useState("");
   const [answerPhrase, setAnswerPhrase] = useState(null);
@@ -11,32 +39,43 @@ const Znajdowanie = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch game data and restore state
   useEffect(() => {
     const loadData = async () => {
       try {
         setLoading(true);
         setError(null);
+
         const response = await fetchElementle();
         const data = response.zdanie;
-
         if (!data?.zdanie || !data?.odpowiedzi?.length) {
           throw new Error("Brak danych do załadowania");
         }
 
-        setAnswerPhrase({
-          zdanie: data.zdanie,
-          odpowiedzi: data.odpowiedzi,
-        });
+        setAnswerPhrase({ zdanie: data.zdanie, odpowiedzi: data.odpowiedzi });
+
+        // after setting answer, restore saved state
+        const saved = loadFromLocalStorage();
+        if (saved) {
+          setFoundElementsArray(saved.found || []);
+          setWin(!!saved.win);
+        }
       } catch (err) {
         setError(err.message || "Wystąpił nieznany błąd");
       } finally {
         setLoading(false);
       }
     };
-
     loadData();
   }, []);
 
+  // Save to localStorage whenever foundElementsArray or win changes
+  useEffect(() => {
+    if (!answerPhrase) return;
+    saveToLocalStorage({ found: foundElementsArray, win });
+  }, [foundElementsArray, win, answerPhrase]);
+
+  // Check win condition
   useEffect(() => {
     if (foundElementsArray.length >= 10) {
       setWin(true);
@@ -49,18 +88,17 @@ const Znajdowanie = () => {
 
   const handleAnswerSubmit = (e) => {
     e.preventDefault();
-
-    if (!answerPhrase) return;
+    if (!answerPhrase || win) return;
 
     const regex = new RegExp("^[\\p{L}]+$", "u");
     const guess = inputValue.match(regex)?.[0];
+    if (!guess) return;
 
-    if (!guess || foundElementsArray.includes(guess)) return;
-
-    if (answerPhrase.odpowiedzi.includes(guess)) {
-      setFoundElementsArray((prev) => [...prev, guess]);
+    if (!foundElementsArray.includes(guess)) {
+      if (answerPhrase.odpowiedzi.includes(guess)) {
+        setFoundElementsArray((prev) => [...prev, guess]);
+      }
     }
-
     setInputValue("");
   };
 
@@ -93,7 +131,7 @@ const Znajdowanie = () => {
       <div className="w-full max-w-4xl min-h-[300px] bg-gradient-to-b from-green-600 to-green-800 rounded-lg shadow-xl p-8 grid gap-6">
         <div className="flex flex-col items-center justify-center gap-6">
           <p className="text-xl md:text-2xl text-center text-white font-medium">
-            {answerPhrase?.zdanie || "Brak danych do wyświetlenia"}
+            {answerPhrase.zdanie}
           </p>
 
           <form onSubmit={handleAnswerSubmit} className="w-full max-w-lg">
@@ -105,6 +143,7 @@ const Znajdowanie = () => {
               placeholder="Podaj ukryty element w zdaniu"
               value={inputValue}
               onChange={handleInputChange}
+              disabled={win}
             />
           </form>
         </div>
@@ -118,7 +157,7 @@ const Znajdowanie = () => {
             {foundElementsArray.map((element, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-emerald-700 text-white font-semibold rounded-full shadow-md transition duration-300 transform hover:scale-105"
+                className="px-3 py-1 text-sm bg-emerald-700 text-white font-semibold rounded-full shadow-md transition duration-300 transform hover:scale-105"
               >
                 {element}
               </span>
