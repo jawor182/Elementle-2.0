@@ -31,13 +31,6 @@ const loadFromLocalStorage = () => {
   }
 };
 
-const arraysEqualIgnoreOrder = (a, b) => {
-  if (a.length !== b.length) return false;
-  const sortedA = [...a].sort();
-  const sortedB = [...b].sort();
-  return sortedA.every((val, idx) => val === sortedB[idx]);
-};
-
 const Uzupelnianie = () => {
   const [reaction, setReaction] = useState(null);
   const [userInput, setUserInput] = useState("");
@@ -76,21 +69,12 @@ const Uzupelnianie = () => {
     }
   }, [userInput, submitted, isCorrect, reaction]);
 
-  const handleChange = (e) => setUserInput(e.target.value.trim());
+  const handleChange = (e) => setUserInput(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    if (!reaction) return;
-
-    // Only reagenty can be guessed; ignore order
-    const expected = reaction.reagenty.map(r => r.trim().toLowerCase());
-    const guessList = userInput
-      .split('+')
-      .map(s => s.trim().toLowerCase())
-      .filter(Boolean);
-
-    if (arraysEqualIgnoreOrder(expected, guessList)) {
+    if (userInput.trim() === reaction.correctAnswer) {
       setIsCorrect(true);
     } else {
       setIsCorrect(false);
@@ -99,13 +83,13 @@ const Uzupelnianie = () => {
 
   if (loading) return (
     <div className="text-center font-roboto bg-[url('/images/bg.png')] bg-cover bg-no-repeat min-h-[91vh] flex justify-center items-center">
-      <p className="text-xl md:text-2xl">Ładowanie reakcji...</p>
+      <p>Ładowanie reakcji...</p>
     </div>
   );
 
   if (error) return (
     <div className="text-center font-roboto bg-[url('/images/bg.png')] bg-cover bg-no-repeat min-h-[91vh] flex justify-center items-center">
-      <p className="text-red-500 text-xl md:text-2xl">Wystąpił błąd: {error}</p>
+      <p className="text-red-500">Wystąpił błąd: {error}</p>
     </div>
   );
 
@@ -113,13 +97,13 @@ const Uzupelnianie = () => {
 
   return (
     <div className="text-center font-roboto bg-[url('/images/bg.png')] bg-cover bg-no-repeat min-h-[91vh] flex justify-center items-center flex-col p-4">
-      <h1 className="text-3xl md:text-6xl bg-gradient-to-r from-yellow-500 to-green-600 bg-clip-text text-transparent font-extrabold mb-4">
+      <h1 className="text-2xl md:text-5xl lg:text-6xl bg-gradient-to-r from-yellow-500 to-green-600 bg-clip-text text-transparent font-extrabold mb-4">
         Uzupełnianie Reakcji Chemicznej
       </h1>
-      <p className="text-xl md:text-3xl text-white mb-6">
-        Uzupełnij poniższą reakcję chemiczną (reagenty, oddziel "+"):
+      <p className="text-lg md:text-2xl lg:text-3xl text-white mb-6">
+        Uzupełnij poniższą reakcję chemiczną:
       </p>
-      <div className="flex flex-col md:flex-row justify-center mb-8 space-y-4 md:space-y-0 md:space-x-8 text-lg md:text-2xl">
+      <div className="flex flex-col md:flex-row text-lg md:text-xl justify-center mb-8 space-y-4 md:space-y-0 md:space-x-8">
         <div className="bg-gray-100 p-5 rounded text-black">
           <span className="font-bold">Nazwa: </span>
           <span>{reaction.nazwa}</span>
@@ -133,27 +117,25 @@ const Uzupelnianie = () => {
           <span>{reaction.produkty.join(" + ")}</span>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
+      <form onSubmit={handleSubmit} className="flex flex-col  md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4">
         <input
           type="text"
           value={userInput}
           onChange={handleChange}
-          placeholder="Podaj reagenty, np. H2 + O2"
-          className="w-full md:w-96 h-12 text-xl md:text-2xl p-3 rounded border focus:outline-none"
+          placeholder="Wpisz brakujący element"
+          className="w-full md:w-80 h-10 text-lg md:text-2xl p-2 rounded border focus:outline-none"
           disabled={isCorrect === true}
         />
         <button
           type="submit"
-          className="h-12 px-8 text-xl md:text-2xl text-white bg-[#017129] hover:bg-[#015526] rounded"
+          className="h-10 px-6 text-white bg-[#017129] hover:bg-[#015526] rounded"
           disabled={isCorrect === true}
         >
           Sprawdź
         </button>
       </form>
       {submitted && isCorrect === false && (
-        <p className="mt-4 text-red-500 text-lg md:text-2xl">
-          Nieprawidłowe reagenty, spróbuj w innym porządku lub sprawdź składnik.
-        </p>
+        <p className="mt-4 text-red-500">Nieprawidłowa odpowiedź, spróbuj ponownie.</p>
       )}
     </div>
   );
